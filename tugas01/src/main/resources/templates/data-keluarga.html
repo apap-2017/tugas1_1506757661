@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Lihat Data Keluarga</title>
+        <link rel="stylesheet" href="/css/bootstrap-grid.css"/>
+        <link rel="stylesheet" href="/css/bootstrap.css"/>
+        <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+       
+    </head>
+    <body style="background-color:#BDBDBD">
+    	<nav class ="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">SIDUK</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+			 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			 <span class="navbar-toggler-icon"></span>
+			</button>
+			
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="/">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/penduduk/cari">Cari Penduduk</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/penduduk/tambah">Tambah Penduduk</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="/keluarga/tambah">Tambah Keluarga</a>
+					</li>
+					
+				</ul>
+			</div>
+		</nav>
+		 <div class="container">
+    	<br/>
+    	<h3 th:text="'Lihat Data Keluarga - ' + ${keluarga.nomor_kk}">"Lihat Data Keluarga - NKK"</h3>
+    	<br/>
+       	 <table>
+       	 	  <tr><th align="left">NKK</th><td th:text="${keluarga.nomor_kk}">NKK</td>
+			 	</tr>
+       	 	  <tr><th align="left">Alamat</th><td th:text="${keluarga.alamat}">Alamat</td></tr>
+       	 	  <tr><th align="left">RT/RW</th><td th:text="${keluarga.rt} + '/' + ${keluarga.rw}">RT/RW</td></tr>
+       	 	  <tr><th align="left">Kelurahan/Desa</th><td th:text="${keluarga.kelurahan}">Kelurahan/Desa</td></tr>
+       	 	  <tr><th align="left">Kecamatan</th><td th:text="${keluarga.kecamatan} ">Kecamatan</td></tr>
+       	 	  <tr><th align="left">Kota</th><td th:text="${keluarga.kota} ">Kota</td></tr>
+       	 	 
+        </table>
+        <br/>
+         <table class="table" style="border: 1px solid black">
+			<thead>
+			  <tr>
+			  	<th>No</th>
+			  	<th>Nama Lengkap</th>
+			  	<th>NIK</th>
+			  	<th>Jenis Kelamin</th>
+			  	<th>Tempat Lahir</th>
+			  	<th>Tanggal Lahir</th>
+			  	<th>Agama</th>
+			  	<th>Pekerjaan</th>
+			  	<th>Status Kawin</th>
+			  	<th>Status Keluarga</th>
+			  	<th>Kewarganegaraan</th>
+			  </tr>
+			</thead>
+			<tbody th:each="anggota, iterationStatus: ${keluarga.anggotaKeluarga}">
+			 <tr>
+			 	<td th:text="${iterationStatus.count}">No. 1</td>
+			 	<td th:text="${anggota.nama}">Nama</td>
+			 	<td th:text="${anggota.nik}">NIK</td>
+			 	<td th:text="${anggota.jenis_kelamin}">Jenis Kelamin</td>
+			 	<td th:text="${anggota.tempat_lahir}">Tempat Lahir</td>
+			 	<td th:text="${anggota.tanggal_lahir}">Tanggal Lahir</td>
+			  	<td th:text="${anggota.agama}">Agama</td>
+			 	<td th:text="${anggota.pekerjaan}">Pekerjaan</td>
+			 	<td th:text="${anggota.status_perkawinan}">Status Kawin</td>
+		 	 	<td th:text="${anggota.status_dalam_keluarga}">Status Keluarga</td>
+ 	 	 	 	<td th:text=" ${anggota.is_wni}">Kewarganegaraan</td>
+			 </tr>
+			</tbody>        
+        </table>
+        <br/>
+   	</div>	
+   	
+    	
+       	<!-- h3 th:text="'NKK: ' + ${keluarga.nomor_kk}">NIK</h3>
+       	<h3 th:text="'Alamat: ' + ${keluarga.alamat}">Alamat</h3>
+       	<h3 th:text="'RT/RW: ' + ${keluarga.rt} + '/' + ${keluarga.rw}">RT/RW</h3>
+       	<h3 th:text="'Kelurahan/Desa: ' + ${keluarga.kelurahan}">Kelurahan/Desa</h3>
+       	<h3 th:text="'Kecamatan: ' + ${keluarga.kecamatan} ">Kecamatan</h3>
+   		<h3 th:text="'Kota: '  + ${keluarga.kota} ">Kota</h3>
+   		<ul th:each="anggota,iterationStatus: ${keluarga.anggotaKeluarga}">
+			<li th:text = "${anggota.nama} + '-' + ${anggota.nik} + '-' + ${anggota.jenis_kelamin}+ '-' + ${anggota.tempat_lahir}
+			+ '-' + ${anggota.tanggal_lahir}+ '-' + ${anggota.agama}+ '-' + ${anggota.pekerjaan}+ '-' + ${anggota.status_perkawinan}
+			+ '-' + ${anggota.status_dalam_keluarga}+ '-' + ${anggota.is_wni}"></li>
+		</ul-->
+ 
+    </body>
+</html>

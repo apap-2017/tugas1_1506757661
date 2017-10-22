@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	   <title>Cari Penduduk</title>
+	   <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	   <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+	   <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+       <link rel="stylesheet" href="/css/bootstrap-grid.css"/>
+       <link rel="stylesheet" href="/css/bootstrap.css"/>
+       <!--script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script-->
+       <script>
+		$(document).ready(function() {
+				$('#tableview').DataTable({
+					
+				});
+		});
+	   </script>
+	</head>
+ <body style="background-color:#BDBDBD">
+   	<nav class ="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">SIDUK</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+		 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+		aria-label="Toggle navigation">
+		 <span class="navbar-toggler-icon"></span>
+		</button>
+		
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="/">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/penduduk/cari">Cari Penduduk</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/penduduk/tambah">Tambah Penduduk</a>
+				</li>
+				
+				<li class="nav-item">
+					<a class="nav-link" href="/keluarga/tambah">Tambah Keluarga</a>
+				</li>
+			
+			</ul>
+		</div>
+	</nav>
+	
+		<div class="container">
+			<br/>
+			<h3 th:text="${judul}">Happiness is within yourself (?)</h3>
+			<div>
+				<form action="/penduduk/cari" method="get">
+					<!-- Bikin if. Kalau udah ada model kelurahan, freeze kecamatan. Kalau udah ada model kecamatan, freeze kota. Else Unfreeze.  -->
+					
+					<div th:if="${kecamatan}">
+					<label>Kota: </label><br/>
+					<select  name="kt">
+						  <option th:text="${kota.nama_kota}" th:value="${kota.id}"></option>
+					</select>
+					</div>
+					
+	   			    <div th:unless="${kecamatan}">
+					<label>Kota: </label><br/>
+					<select  name="kt">
+						  <option selected="true" disabled="disabled">Pilih Kota</option>
+						  <option th:each="kota, iterationStatus: ${kota}" th:text="${kota.nama_kota}" th:value="${kota.id}"></option>
+					</select>
+	   			    </div>
+					<div th:if="${kelurahan}" >
+					<label>Kecamatan: </label><br/>
+					<select name="kc">
+						  <option th:text="${kecamatan.nama_kecamatan}" th:value="${kecamatan.id}"></option>
+					</select>
+					</div>
+	
+	  			    <div th:if="${blmAdaKelAdaKota}">
+	  			    <label>Kecamatan: </label><br/>
+					<select  name="kc">
+						  <option selected="true" disabled="disabled" >Pilih Kecamatan</option>
+						  <option th:each="kecamatan, iterationStatus: ${kecamatan}" th:text="${kecamatan.nama_kecamatan}" th:value="${kecamatan.id}"></option>
+					</select>
+					</div>
+		 		    
+		 		    <div th:if="${adaSemua}">
+		 		    <label>Kelurahan: </label><br/>
+					<select  name="kl">
+						  <option th:text="${kelurahan.nama_kelurahan}" th:value="${kelurahan.id}"></option>
+					</select>
+	  			    </div>
+					
+	  			    <div th:if="${blmAdaKelAdaKotaAdaKec}">
+	  			    <label>Kelurahan: </label><br/>
+					<select  name="kl">
+						  <option selected="true" disabled="disabled">Pilih Kelurahan</option>
+						  <option th:each="kelurahan, iterationStatus: ${kelurahan}" th:text="${kelurahan.nama_kelurahan}" th:value="${kelurahan.id}"></option>
+					</select>
+					</div>
+					<br/>
+					<button>Cari</button>
+				</form>
+			</div>
+			<div th:if="${adaSemua}">
+			<div>
+				<h3>Penduduk dengan Usia Tertua</h3>
+				<table id="tertua" class="display" cellspacing="0" width="100%">
+					<tbody>
+						<tr>
+							<td>NIK</td>
+							<td th:text="${tertua.nik}">NIK</td>
+						</tr>
+						<tr>
+							<td>Nama</td>
+							<td th:text="${tertua.nama}">Nama</td>
+						</tr>
+						<tr>
+							<td>Tanggal Lahir</td>
+							<td th:text="${tertua.tanggal_lahir}">Tanggal Lahir</td>
+						</tr>
+					</tbody>
+				</table>
+				<br/><br/>
+				<h3>Penduduk dengan Usia Termuda</h3>
+				<table id="termuda" class="display" cellspacing="0" width="100%">
+					<tbody>
+						<tr>
+							<td>NIK</td>
+							<td th:text="${termuda.nik}">NIK</td>
+						</tr>
+						<tr>
+							<td>Nama</td>
+							<td th:text="${termuda.nama}">Nama</td>
+						</tr>
+						<tr>
+							<td>Tanggal Lahir</td>
+							<td th:text="${termuda.tanggal_lahir}">Tanggal Lahir</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			 <table id = "tableview" class="display" cellspacing="0" width="100%">
+				<thead>
+				  <tr >
+				  	<th>NIK</th>
+				  	<th>Nama</th>
+				  	<th>Jenis Kelamin</th>
+				  </tr>
+				</thead>
+				<tbody >
+				 <tr th:each="penduduk, iterationStatus: ${penduduk}">
+				 	<td th:text="${penduduk.nik}">NIK</td>
+				 	<td th:text="${penduduk.nama}">Nama</td>
+				 	<td th:text="${penduduk.jenis_kelamin.equals('0')? 'Pria':'Wanita'}">Jenis Kelamin</td>
+				 </tr>
+				</tbody>        
+	        </table>
+			</div>
+		</div>
+	</body>
+</html>

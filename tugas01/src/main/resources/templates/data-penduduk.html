@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Lihat Data Penduduk</title>
+        <link rel="stylesheet" href="/css/bootstrap-grid.css"/>
+        <link rel="stylesheet" href="/css/bootstrap.css"/>
+        <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+       
+    </head>
+    <body style="background-color:#BDBDBD">
+    	<nav class ="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">SIDUK</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+			 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			 <span class="navbar-toggler-icon"></span>
+			</button>
+			
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="/">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/penduduk/cari">Cari Penduduk</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/penduduk/tambah">Tambah Penduduk</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="/keluarga/tambah">Tambah Keluarga</a>
+					</li>
+					
+				</ul>
+			</div>
+		</nav>
+    <div class="container">
+    	<br/>
+    	<h3 th:text="'Lihat Data Penduduk - ' + ${penduduk.nik}">"Lihat Data Penduduk - NIK"</h3>
+    	<br/>
+       	 <table>
+       	 	  <tr><th align="left">NIK</th><td th:text="${penduduk.nik}">NIK</td>
+			 	</tr>
+       	 	  <tr><th align="left">Nama</th><td th:text="${penduduk.nama}">Nama</td></tr>
+       	 	  <tr><th align="left">Jenis Kelamin</th><td th:text="${penduduk.jenis_kelamin}">Jenis Kelamin</td></tr>
+       	 	  <tr><th align="left">Tempat/Tanggal Lahir</th><td th:text="${penduduk.tempat_lahir} + ', ' + ${penduduk.tanggal_lahir} ">TTL</td></tr>
+       	 	  <tr><th align="left">Alamat</th><td th:text="${penduduk.alamat} ">Alamat</td></tr>
+       	 	  <tr><th align="left">RT/RW</th><td th:text="${penduduk.rt} + '/' + ${penduduk.rw} ">RT/RW</td></tr>
+       	 	  <tr><th align="left">Kelurahan/Desa</th><td th:text="${penduduk.kelurahan}">Kelurahan/Desa</td></tr>
+       	 	  <tr><th align="left">Kecamatan</th><td th:text="${penduduk.kecamatan}">Kecamatan</td></tr>
+       	 	  <tr><th align="left">Kota</th><td th:text="${penduduk.kota}">Kota</td></tr>
+       	 	  <tr><th align="left">Golongan Darah</th><td th:text="${penduduk.golongan_darah}">Golongan Darah</td></tr>
+       	 	  <tr><th align="left">Agama</th><td th:text="${penduduk.agama}">Agama</td></tr>
+       	 	  <tr><th align="left">Status Perkawinan</th><td th:text="${penduduk.status_perkawinan}">Status Perkawinan</td></tr>
+       	 	  <tr><th align="left">Pekerjaan</th><td th:text="${penduduk.pekerjaan}">Pekerjaan</td></tr>
+       	 	  <tr><th align="left">Kewarganegaraan</th><td th:text="${penduduk.is_wni}">Kewarganegaraan</td></tr>
+       	 	  <tr><th align="left">Status Kematian</th><td th:text="${penduduk.is_wafat}">Status Kematian</td></tr>
+        </table>
+        <br/>
+       	<form action="/penduduk/mati" method="post"  th:object="${penduduk}">
+			<div>
+				<input type="hidden" name="nik" th:value="${penduduk.nik}" th:field="*{nik}"/>
+			</div>
+       		<div>
+				<button type="submit">Nonaktifkan</button>
+			</div>
+		</form>
+   	</div>	
+    </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Sistem Informasi Kependudukan Online Provinsi DKI Jakarta</title>
+		<link rel="stylesheet" href="/css/bootstrap-grid.css"/>
+	    <link rel="stylesheet" href="/css/bootstrap.css"/>
+	    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+	</head>
+
+	<body style="background-color:#BDBDBD">
+    	<nav class ="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">SIDUK</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+			 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			 <span class="navbar-toggler-icon"></span>
+			</button>
+			
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="/">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/penduduk/cari">Cari Penduduk</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/penduduk/tambah">Tambah Penduduk</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="/keluarga/tambah">Tambah Keluarga</a>
+					</li>
+					
+					
+				</ul>
+			</div>
+		</nav>
+	<div class="container">
+	<br/>
+	<h3 class="page-header">Sistem Informasi Kependudukan Online Provinsi DKI Jakarta</h3>
+	<p>Selamat datang di Sistem Informasi Kependudukan Online Provinsi DKI Jakarta</p>
+
+	<form action="/penduduk" method="get">
+		<div>
+			<label for="nik">Masukkan Nomor Induk Kependudukan</label> 
+			<br/>
+			<input type="text" name="nik" />
+		</div>
+		<div>
+			<button type="submit">Lihat</button>
+		</div>
+	</form>
+	<hr />
+	<form action="/keluarga" method="get">
+		<div>
+			<label for="nkk">Masukkan Nomor Kartu Keluarga</label> 
+			<br/>
+			<input type="text" name="nkk" />
+		</div>
+		<div>
+			<button type="submit">Lihat</button>
+		</div>
+	</form>
+	</div>
+
+</body>
+
+</html>
+

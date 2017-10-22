@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Error</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/bootstrap-grid.css" />
+<link rel="stylesheet" href="/css/bootstrap.css" />
+<link
+	href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"
+	rel="stylesheet" type="text/css" />
+</head>
+<body style="background-color: #BDBDBD">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">SIDUK</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+				<li class="nav-item"><a class="nav-link" href="/penduduk/cari">Cari
+						Penduduk</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="/penduduk/tambah">Tambah Penduduk</a></li>
+
+				<li class="nav-item"><a class="nav-link"
+					href="/keluarga/tambah">Tambah Keluarga</a></li>
+
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		<h1 style="margin-top:50px">ERROR!</h1>
+		<h2 th:if="${message}" th:text="${message}"></h2>
+		<h2 th:unless="${message}">Halaman tidak ditemukan.</h2>
+		
+	</div>
+</body>
+</html>

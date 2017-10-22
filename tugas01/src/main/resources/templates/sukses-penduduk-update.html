@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Sukses Data Penduduk Update</title>
+        <link rel="stylesheet" href="/css/bootstrap-grid.css"/>
+        <link rel="stylesheet" href="/css/bootstrap.css"/>
+        <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+	</head>
+
+	<body style="background-color:#BDBDBD">
+   	<nav class ="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">SIDUK</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+		 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+		aria-label="Toggle navigation">
+		 <span class="navbar-toggler-icon"></span>
+		</button>
+		
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="/">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/penduduk/cari">Cari Penduduk</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/penduduk/tambah">Tambah Penduduk</a>
+				</li>
+				
+				<li class="nav-item">
+					<a class="nav-link" href="/keluarga/tambah">Tambah Keluarga</a>
+				</li>
+			
+			</ul>
+		</div>
+	</nav>
+	<br/>
+	<div class="container">
+		<h1>Sukses Diupdate</h1>
+       	<h3 th:text="'Penduduk dengan NIK ' + ${niklama} + ' berhasil diubah'">Sukses diubah dengan nik</h3>
+    
+	</div>
+    </body>
+</html>
